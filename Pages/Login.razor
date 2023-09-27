@@ -1,0 +1,39 @@
+﻿@page "/"
+
+<PageTitle>STUNT</PageTitle>
+
+<div class="d-flex flex-column justify-content-center align-items-center vh-100">
+    <h1>STUNT</h1>
+    <h50>Sistema de Transporte Universitário de Nova Trento</h50>
+
+    <div class="row" style="min-width: 300px;">
+        <div class="col-md-4">
+            <div class="form-group" style="min-width: 300px;">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" @bind="LoginData.Email" id="email" placeholder="Digite o email">
+            </div>
+            <div class="form-group" style="min-width: 300px;">
+                <label for="password">Senha:</label>
+                <input type="password" class="form-control" @bind="LoginData.Password" id="password" placeholder="Digite a senha">
+            </div>
+            <div class="form-check" style="min-width: 300px;">
+                <input type="checkbox" class="form-check-input" @bind="LoginData.RememberMe" id="rememberMe">
+                <label class="form-check-label" for="rememberMe">Lembre-me</label>
+            </div>
+            <div id="div-login">
+                <button id="login" class="btn btn-primary" @onclick="HandleLogin">Login</button>
+                <button id="signup" class="btn btn-primary">Cadastrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private Models.Login LoginData = new Models.Login();
+
+    private void HandleLogin()
+    {
+        // Your login logic here...
+    }
+}
+

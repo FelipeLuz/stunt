@@ -1,0 +1,67 @@
+@page "/signup"
+
+@code {
+    private Models.SignUp SignupData = new Models.SignUp();
+
+    private void HandleSignup()
+    {
+        // Implement sign up logic here.
+        // This includes server-side validation, saving data, and so on.
+    }
+}
+
+<h3>Cadastro</h3>
+
+<form @onsubmit="HandleSignup">
+    <div class="form-group">
+        <label for="name">Nome:</label>
+        <input type="text" class="form-control" id="name" @bind="SignupData.Name" required>
+    </div>
+
+    <div class="form-group">
+        <label for="surname">Sobrenome:</label>
+        <input type="text" class="form-control" id="surname" @bind="SignupData.Surname" required>
+    </div>
+
+    <div class="form-group">
+        <label for="email">E-mail:</label>
+        <input type="email" class="form-control" id="email" @bind="SignupData.Email" required>
+    </div>
+
+    <div class="form-group">
+        <label for="cpf">CPF:</label>
+        <input type="text" class="form-control" id="cpf" @bind="SignupData.CPF" required>
+    </div>
+
+    <div class="form-group">
+        <label for="password">Senha:</label>
+        <input type="password" class="form-control" id="password" @bind="SignupData.Password" required>
+    </div>
+
+    <div class="form-group">
+        <label for="confirmPassword">Confirme a Senha:</label>
+        <input type="password" class="form-control" id="confirmPassword" @bind="SignupData.ConfirmPassword" required>
+    </div>
+
+    <div class="form-group">
+        <label for="cellphone">Celular:</label>
+        <input type="tel" class="form-control" id="cellphone" @bind="SignupData.CellphoneNumber" required>
+    </div>
+
+    <div class="form-group">
+        <label for="address">Endereço:</label>
+        <input type="text" class="form-control" id="address" @bind="SignupData.Address" required>
+    </div>
+
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="resideNovaTrento" @bind="SignupData.ResideInNovaTrento">
+        <label class="form-check-label" for="resideNovaTrento">Confirmo que resido em Nova Trento</label>
+    </div>
+
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="wishCardDelivery" @bind="SignupData.WishCardDelivery">
+        <label class="form-check-label" for="wishCardDelivery">Desejo receber a carteirinha em casa (R$ 15,00)</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Cadastrar</button>
+</form>
