@@ -2,10 +2,29 @@
 
 <PageTitle>stunt</PageTitle>
 
-<div class="page">
-    <main>
-        <article class="content px-4">
-            @Body
-        </article>
-    </main>
+<div class="page d-flex">
+    <div class="half-width bg-image">
+        <!-- This division will contain the image -->
+    </div>
+    <div class="half-width">
+        <main>
+            <article class="content px-4">
+                @Body
+            </article>
+        </main>
+    </div>
 </div>
+
+<style>
+    .half-width {
+        flex: 1;
+        width: 50%;
+    }
+
+    .bg-image {
+        background: url('onibus-ufrj.jpg') no-repeat center center;
+        background-size: cover;
+        border-radius: 20px;
+
+    }
+</style>

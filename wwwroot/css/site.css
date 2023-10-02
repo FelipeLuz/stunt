@@ -38,6 +38,21 @@ a, .btn-link {
     color: red;
 }
 
+.custom-badge {
+    display: inline-block;
+    padding: .1em .4em;
+    font-size: 65%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .2rem;
+    background-color: #e9ecef;
+    color: #333;
+    margin-left: 10px; /* adding some space from the text */
+}
+
 #blazor-error-ui {
     background: lightyellow;
     bottom: 0;

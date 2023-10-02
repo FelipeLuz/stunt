@@ -11,16 +11,9 @@
     height: 100vh; /* This assumes you want it centered in the viewport. Adjust as needed. */
 }
 
-#div-login {
-    display: flex;
-    justify-content: center;
-    align-items: center;  /* This is to center vertically if needed. */
-    width: 100%;
-}
 
-#signup {
-    margin-left: 10px;
-}
+
+
 
 .form-group {
     margin-bottom: 20px;

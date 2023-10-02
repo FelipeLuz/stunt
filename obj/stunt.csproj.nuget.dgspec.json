@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/felipeluz/univali/Engenharia/stunt/stunt.csproj": {}
+    "/Users/felipeluz/univali/Engenharia/stunt/stunt-base/stunt.csproj": {}
   },
   "projects": {
-    "/Users/felipeluz/univali/Engenharia/stunt/stunt.csproj": {
+    "/Users/felipeluz/univali/Engenharia/stunt/stunt-base/stunt.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/felipeluz/univali/Engenharia/stunt/stunt.csproj",
+        "projectUniqueName": "/Users/felipeluz/univali/Engenharia/stunt/stunt-base/stunt.csproj",
         "projectName": "stunt",
-        "projectPath": "/Users/felipeluz/univali/Engenharia/stunt/stunt.csproj",
+        "projectPath": "/Users/felipeluz/univali/Engenharia/stunt/stunt-base/stunt.csproj",
         "packagesPath": "/Users/felipeluz/.nuget/packages/",
-        "outputPath": "/Users/felipeluz/univali/Engenharia/stunt/obj/",
+        "outputPath": "/Users/felipeluz/univali/Engenharia/stunt/stunt-base/obj/",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "/Users/felipeluz/Library/Application Support/Godot/mono/GodotNuGetFallbackFolder"

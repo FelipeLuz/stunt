@@ -1,0 +1,32 @@
+@page "/admin/request-details/{RequestId}"
+@using stunt.Models
+@inject HttpClient Http
+
+<h3>Request Details for @request.Name</h3>
+
+<p>Status: @request.Status</p>
+<!-- Add other request details here -->
+
+<button @onclick="ApproveRequest">Approve</button>
+<button @onclick="DenyRequest">Deny</button>
+
+@code {
+    [Parameter] public int RequestId { get; set; }
+    private Request request;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Fetch the specific request's details from your API or data store.
+        request = await Http.GetFromJsonAsync<Request>($"yourApiEndpoint/{RequestId}");
+    }
+
+    private async Task ApproveRequest()
+    {
+        // Implement your logic to approve the request.
+    }
+
+    private async Task DenyRequest()
+    {
+        // Implement your logic to deny the request.
+    }
+}

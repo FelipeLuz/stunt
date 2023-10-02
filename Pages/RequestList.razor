@@ -1,0 +1,73 @@
+@page "/admin/requests"
+@using stunt.Models
+
+<div class="d-flex flex-column justify-content-start align-items-center pt-5 pb-5 bg-light" style="min-height: 100vh;">
+    <div class="shadow-lg p-5 bg-white rounded" style="width: 80%; max-width: 600px;">
+        <h3 class="text-center text-primary mb-4">Portal do Administrador: Solicitações</h3>
+
+        <!-- Tabs -->
+        <ul class="nav nav-pills justify-content-center mb-3">
+            <li class="nav-item">
+                <button @onclick="SetActiveTabIncoming" class="nav-link @(activeTab == "incoming" ? "active bg-primary" : "bg-light")">Entrantes</button>
+            </li>
+            <li class="nav-item">
+                <button @onclick="SetActiveTabProcessing" class="nav-link @(activeTab == "processing" ? "active bg-primary" : "bg-light")">Em Processamento</button>
+            </li>
+            <li class="nav-item">
+                <button @onclick="SetActiveTabProcessed" class="nav-link @(activeTab == "processed" ? "active bg-primary" : "bg-light")">Processadas</button>
+            </li>
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content mt-3">
+            @foreach (var tab in new[] { "incoming", "processing", "processed" })
+            {
+                <div class="tab-pane @(activeTab == tab ? "active" : "")" id="@tab">
+                    <h4 class="text-capitalize">@tab</h4>
+                    @foreach (var request in requests.Where(r => r.Status.ToString().ToLower() == tab))
+					{
+						<div class="card mb-3 shadow-sm">
+							<div class="row g-0">
+								<div class="col-md-3 d-flex align-items-center justify-content-center">
+									<img src="@request.ImageUrl" alt="@request.Name" class="img-fluid rounded-circle" style="width: 80px; height: 80px; object-fit: cover;">
+								</div>
+								<div class="col-md-9">
+									<div class="card-body py-2">
+										<div class="d-flex justify-content-between align-items-center">
+											<div>
+												<h5 class="card-title mb-1">@request.Name</h5>
+												<p class="card-text mb-0"><i class="bi bi-building"></i> @request.University</p>
+												<p class="card-text mb-0"><i class="bi bi-geo-alt"></i> @request.CityOfDestination</p>
+											</div>
+											<a href="@($"/admin/request-details/{request.Id}")" class="btn btn-sm btn-primary align-self-center">Detalhes</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					}
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    private void SetActiveTabIncoming() => SetActiveTab("incoming");
+    private void SetActiveTabProcessing() => SetActiveTab("processing");
+    private void SetActiveTabProcessed() => SetActiveTab("processed");
+
+    private string activeTab = "incoming";
+
+    private void SetActiveTab(string tab)
+    {
+        activeTab = tab;
+    }
+
+    private List<Request> requests = new List<Request>
+    {
+        new Request { Id = 1, Name = "Felipe L.", Status = RequestStatus.Incoming, ImageUrl = "student.png", University = "Univali", CityOfDestination = "Blumenau" },
+        new Request { Id = 2, Name = "Filipi C.", Status = RequestStatus.Processing, ImageUrl = "student.png", University = "Univali", CityOfDestination = "Itajai" },
+        //... add more mock data as needed...
+    };
+}

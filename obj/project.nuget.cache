@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "5ZCTB42/ylkrsyWo4xL3men+kYqDjy/+0kpsHnoyRHmcSPufrY/43pWDCUBi7Nx/rCQkSPHQ92GDTtfpR29xMQ==",
+  "dgSpecHash": "Jq94YmShAjlsaJCA30o+FZkLOhGiiIWS2FxJ9w0+CLly7PNxKTZEXYZ+ltOUfYfrMvYmZ8bX9VP4fvkj/o6aog==",
   "success": true,
-  "projectFilePath": "/Users/felipeluz/univali/Engenharia/stunt/stunt.csproj",
+  "projectFilePath": "/Users/felipeluz/univali/Engenharia/stunt/stunt-base/stunt.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

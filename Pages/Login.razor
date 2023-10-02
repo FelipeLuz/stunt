@@ -1,32 +1,39 @@
 ﻿@page "/"
+@inject NavigationManager NavManager
 
 <PageTitle>STUNT</PageTitle>
 
-<div class="d-flex flex-column justify-content-center align-items-center vh-100">
-    <h1>STUNT</h1>
-    <h50>Sistema de Transporte Universitário de Nova Trento</h50>
+<div class="d-flex flex-column justify-content-center align-items-center vh-100 bg-light">
+    <h1 class="text-primary mb-2">STUNT</h1>
+    <h5 class="text-muted mb-4">Sistema de Transporte Universitário de Nova Trento</h5>
 
-    <div class="row" style="min-width: 300px;">
-        <div class="col-md-4">
-            <div class="form-group" style="min-width: 300px;">
-                <label for="email">Email:</label>
-                <input type="email" class="form-control" @bind="LoginData.Email" id="email" placeholder="Digite o email">
-            </div>
-            <div class="form-group" style="min-width: 300px;">
-                <label for="password">Senha:</label>
-                <input type="password" class="form-control" @bind="LoginData.Password" id="password" placeholder="Digite a senha">
-            </div>
-            <div class="form-check" style="min-width: 300px;">
-                <input type="checkbox" class="form-check-input" @bind="LoginData.RememberMe" id="rememberMe">
-                <label class="form-check-label" for="rememberMe">Lembre-me</label>
-            </div>
-            <div id="div-login">
-                <button id="login" class="btn btn-primary" @onclick="HandleLogin">Login</button>
-                <button id="signup" class="btn btn-primary">Cadastrar</button>
-            </div>
+    <div style="width: 80%; max-width: 600px;" class="shadow-lg p-4 bg-white rounded">
+        <div class="form-group mb-3">
+            <label for="email" class="form-label">Email:</label>
+            <input type="email" class="form-control" @bind="LoginData.Email" id="email" placeholder="Digite o email">
+        </div>
+        <div class="form-group mb-3">
+            <label for="password" class="form-label">Senha:</label>
+            <input type="password" class="form-control" @bind="LoginData.Password" id="password" placeholder="Digite a senha">
+        </div>
+        <div class="form-check mb-3">
+            <input type="checkbox" class="form-check-input" @bind="LoginData.RememberMe" id="rememberMe">
+            <label class="form-check-label" for="rememberMe">Lembre-me</label>
+        </div>
+        <div class="d-flex justify-content-center">
+            <button id="login" class="btn btn-primary" @onclick="HandleLogin">Login</button>
+            <button id="signup" class="btn btn-outline-primary ml-2" @onclick="NavigateToSignup">Cadastrar</button> 
         </div>
     </div>
 </div>
+
+<style>
+#signup, #login {
+    margin-left: 10px;
+    border-radius: 10px;
+    margin: 5px;
+}
+</style>
 
 @code {
     private Models.Login LoginData = new Models.Login();
@@ -35,5 +42,9 @@
     {
         // Your login logic here...
     }
-}
 
+    private void NavigateToSignup()
+    {
+        NavManager.NavigateTo("/signup");
+    }
+}

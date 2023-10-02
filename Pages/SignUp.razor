@@ -1,67 +1,68 @@
 @page "/signup"
 
+<div class="d-flex flex-column justify-content-start align-items-center pt-5 pb-5 bg-light" style="min-height: 100vh;">
+    <div class="shadow-lg p-5 bg-white rounded" style="width: 80%; max-width: 600px;">
+        <h3 class="text-center text-primary mb-4">Cadastro</h3>
+
+        <form @onsubmit="HandleSignup">
+            <!-- Simplifying and streamlining the form-group structure -->
+            <div class="mb-3">
+                <label for="name" class="form-label">Nome:</label>
+                <input type="text" class="form-control" id="name" @bind="SignupData.Name" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="surname" class="form-label">Sobrenome:</label>
+                <input type="text" class="form-control" id="surname" @bind="SignupData.Surname" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label">E-mail:</label>
+                <input type="email" class="form-control" id="email" @bind="SignupData.Email" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="cpf" class="form-label">CPF:</label>
+                <input type="text" class="form-control" id="cpf" @bind="SignupData.CPF" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">Senha:</label>
+                <input type="password" class="form-control" id="password" @bind="SignupData.Password" required>
+            </div>
+
+
+            <div class="mb-3">
+                <label for="cellphone" class="form-label">Celular:</label>
+                <input type="tel" class="form-control" id="cellphone" @bind="SignupData.CellphoneNumber" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="address" class="form-label">Endereço:</label>
+                <input type="text" class="form-control" id="address" @bind="SignupData.Address" required>
+            </div>
+
+            <div class="form-check mb-2">
+                <input type="checkbox" class="form-check-input" id="resideNovaTrento" @bind="SignupData.ResideInNovaTrento">
+                <label class="form-check-label" for="resideNovaTrento">Confirmo que resido em Nova Trento</label>
+            </div>
+
+            <div class="form-check mb-3">
+                <input type="checkbox" class="form-check-input" id="wishCardDelivery" @bind="SignupData.WishCardDelivery">
+                <label class="form-check-label" for="wishCardDelivery">Desejo receber a carteirinha em casa (R$ 15,00)</label>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 mt-2">Cadastrar</button>
+        </form>
+    </div>
+</div>
+
+
 @code {
     private Models.SignUp SignupData = new Models.SignUp();
 
     private void HandleSignup()
     {
         // Implement sign up logic here.
-        // This includes server-side validation, saving data, and so on.
     }
 }
-
-<h3>Cadastro</h3>
-
-<form @onsubmit="HandleSignup">
-    <div class="form-group">
-        <label for="name">Nome:</label>
-        <input type="text" class="form-control" id="name" @bind="SignupData.Name" required>
-    </div>
-
-    <div class="form-group">
-        <label for="surname">Sobrenome:</label>
-        <input type="text" class="form-control" id="surname" @bind="SignupData.Surname" required>
-    </div>
-
-    <div class="form-group">
-        <label for="email">E-mail:</label>
-        <input type="email" class="form-control" id="email" @bind="SignupData.Email" required>
-    </div>
-
-    <div class="form-group">
-        <label for="cpf">CPF:</label>
-        <input type="text" class="form-control" id="cpf" @bind="SignupData.CPF" required>
-    </div>
-
-    <div class="form-group">
-        <label for="password">Senha:</label>
-        <input type="password" class="form-control" id="password" @bind="SignupData.Password" required>
-    </div>
-
-    <div class="form-group">
-        <label for="confirmPassword">Confirme a Senha:</label>
-        <input type="password" class="form-control" id="confirmPassword" @bind="SignupData.ConfirmPassword" required>
-    </div>
-
-    <div class="form-group">
-        <label for="cellphone">Celular:</label>
-        <input type="tel" class="form-control" id="cellphone" @bind="SignupData.CellphoneNumber" required>
-    </div>
-
-    <div class="form-group">
-        <label for="address">Endereço:</label>
-        <input type="text" class="form-control" id="address" @bind="SignupData.Address" required>
-    </div>
-
-    <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="resideNovaTrento" @bind="SignupData.ResideInNovaTrento">
-        <label class="form-check-label" for="resideNovaTrento">Confirmo que resido em Nova Trento</label>
-    </div>
-
-    <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="wishCardDelivery" @bind="SignupData.WishCardDelivery">
-        <label class="form-check-label" for="wishCardDelivery">Desejo receber a carteirinha em casa (R$ 15,00)</label>
-    </div>
-
-    <button type="submit" class="btn btn-primary mt-3">Cadastrar</button>
-</form>
