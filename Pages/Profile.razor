@@ -1,25 +1,57 @@
 @page "/profile"
 
+@inject NavigationManager NavManager
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+
 <div class="d-flex flex-column justify-content-center align-items-center vh-100 bg-light">
-    <div class="profile-container card shadow-sm p-4 text-center bg-white rounded">
+    <div class="profile-container card shadow-sm p-4 text-center bg-white rounded" style="width: 80%; max-width: 400px;">
         <img src="@UserProfile.ImageUrl" alt="@UserProfile.Name" class="profile-image img-thumbnail mb-3 rounded-circle" />
         <h3>@UserProfile.Name</h3>
-        <p><strong>University Course:</strong> @UserProfile.UniversityCourse</p>
-        <p><strong>From:</strong> @UserProfile.Origin</p>
-        <p><strong>Goes to:</strong> @UserProfile.Destination</p>
+        <p><strong>Curso:</strong> @UserProfile.UniversityCourse</p>
+        <p><strong>Origem:</strong> @UserProfile.Origin</p>
+        <p><strong>Destino:</strong> @UserProfile.Destination</p>
     </div>
 </div>
 
 <style>
+    body {
+        font-family: 'Roboto';
+        background-color: #eaf6ff;
+    }
+
+    .bg-light {
+        background-color: #fbeec1 !important;
+    }
+
+    h3 {
+        color: #ffab40;
+        font-family: 'Roboto';
+        font-weight: bold;
+    }
+
+    .bg-image-profile {
+        background: url('bus-japan-2.png') no-repeat center center;
+        background-size: 100% 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
     .profile-container {
         max-width: 400px;
     }
 
     .profile-image {
-        width: 100px;       /* Adjusted the width to be smaller for a profile picture */
-        height: 100px;     /* Made it a fixed height to ensure uniformity */
+        width: 100px;
+        height: 100px;
         object-fit: cover;
-        margin: 0 auto 20px; /* Centered the image and added margin to the bottom */
+        margin: 0 auto 20px;
     }
 </style>
 
@@ -27,9 +59,9 @@
     private Models.Profile UserProfile = new Models.Profile 
     {
         ImageUrl = "student.png",
-        Name = "John Doe",
-        UniversityCourse = "Computer Science",
-        Origin = "New York",
-        Destination = "San Francisco"
+        Name = "Filipi C.",
+        UniversityCourse = "Ciência da Computação",
+        Origin = "Nova Trento",
+        Destination = "Univali - Itajaí"
     };
 }

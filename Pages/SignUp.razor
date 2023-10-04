@@ -1,62 +1,104 @@
 @page "/signup"
 
+@inject NavigationManager NavManager
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+
 <div class="d-flex flex-column justify-content-start align-items-center pt-5 pb-5 bg-light" style="min-height: 100vh;">
     <div class="shadow-lg p-5 bg-white rounded" style="width: 80%; max-width: 600px;">
-        <h3 class="text-center text-primary mb-4">Cadastro</h3>
+        <h3 class="text-center mb-4">Cadastro</h3>
 
         <form @onsubmit="HandleSignup">
-            <!-- Simplifying and streamlining the form-group structure -->
+            <!-- Form fields -->
             <div class="mb-3">
                 <label for="name" class="form-label">Nome:</label>
                 <input type="text" class="form-control" id="name" @bind="SignupData.Name" required>
             </div>
-
             <div class="mb-3">
                 <label for="surname" class="form-label">Sobrenome:</label>
                 <input type="text" class="form-control" id="surname" @bind="SignupData.Surname" required>
             </div>
-
             <div class="mb-3">
                 <label for="email" class="form-label">E-mail:</label>
                 <input type="email" class="form-control" id="email" @bind="SignupData.Email" required>
             </div>
-
             <div class="mb-3">
                 <label for="cpf" class="form-label">CPF:</label>
                 <input type="text" class="form-control" id="cpf" @bind="SignupData.CPF" required>
             </div>
-
             <div class="mb-3">
                 <label for="password" class="form-label">Senha:</label>
                 <input type="password" class="form-control" id="password" @bind="SignupData.Password" required>
             </div>
-
-
             <div class="mb-3">
                 <label for="cellphone" class="form-label">Celular:</label>
                 <input type="tel" class="form-control" id="cellphone" @bind="SignupData.CellphoneNumber" required>
             </div>
-
             <div class="mb-3">
                 <label for="address" class="form-label">Endereço:</label>
                 <input type="text" class="form-control" id="address" @bind="SignupData.Address" required>
             </div>
-
             <div class="form-check mb-2">
-                <input type="checkbox" class="form-check-input" id="resideNovaTrento" @bind="SignupData.ResideInNovaTrento">
+                <input type="checkbox" class="form-check-input" id="resideNovaTrento"
+                    @bind="SignupData.ResideInNovaTrento">
                 <label class="form-check-label" for="resideNovaTrento">Confirmo que resido em Nova Trento</label>
             </div>
-
             <div class="form-check mb-3">
-                <input type="checkbox" class="form-check-input" id="wishCardDelivery" @bind="SignupData.WishCardDelivery">
-                <label class="form-check-label" for="wishCardDelivery">Desejo receber a carteirinha em casa (R$ 15,00)</label>
+                <input type="checkbox" class="form-check-input" id="wishCardDelivery"
+                    @bind="SignupData.WishCardDelivery">
+                <label class="form-check-label" for="wishCardDelivery">Desejo receber a carteirinha em casa (R$
+                    15,00)</label>
             </div>
-
-            <button type="submit" class="btn btn-primary w-100 mt-2">Cadastrar</button>
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary mt-2">Cadastrar</button>
+            </div>
         </form>
     </div>
 </div>
 
+<style>
+    body {
+        font-family: 'Roboto';
+        background-color: #eaf6ff;
+    }
+
+    .bg-light {
+        background-color: #fbeec1 !important;
+    }
+
+    h3 {
+        color: #ffab40 !important;
+        font-family: 'Roboto';
+        font-weight: bold;
+    }
+
+    .bg-image-profile {
+        background: url('bus-japan-2.png') no-repeat center center;
+        background-size: 100% 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    .form-label {
+        font-family: 'Roboto';
+        font-weight: bold;
+    }
+
+    button.btn-primary {
+        border-radius: 25px;
+        transition: transform 0.3s ease-out;
+    }
+
+    button.btn-primary:hover {
+        transform: scale(1.1);
+    }
+</style>
 
 @code {
     private Models.SignUp SignupData = new Models.SignUp();
