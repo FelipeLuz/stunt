@@ -2,15 +2,18 @@
 
 @inject NavigationManager NavManager
 <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
 
 <PageTitle>STUNT</PageTitle>
 
-<div class="page d-flex">
-    <div class="half-width bg-image">
-        <!-- Image Division -->
+<div class="page d-flex ">
+    <div class="half-width bg-image rounded image">
     </div>
-    <div class="half-width">
-        <div class="d-flex flex-column justify-content-center align-items-center vh-100 bg-light">
+    <div class="half-width rounded ">
+        <div class="d-flex flex-column justify-content-center align-items-center  bg-light">
             <h1 class="text-primary mb-2">STUNT</h1>
             <h5 class="text-muted mb-4">Sistema de Transporte Universitário de Nova Trento</h5>
 
@@ -18,12 +21,12 @@
                 <div class="form-group mb-3">
                     <label for="email" class="form-label">Email:</label>
                     <input type="email" class="form-control" @bind="LoginData.Email" id="email"
-                           placeholder="Digite o email">
+                        placeholder="Digite o email">
                 </div>
                 <div class="form-group mb-3">
                     <label for="password" class="form-label">Senha:</label>
                     <input type="password" class="form-control" @bind="LoginData.Password" id="password"
-                           placeholder="Digite a senha">
+                        placeholder="Digite a senha">
                 </div>
                 <div class="form-check mb-3">
                     <input type="checkbox" class="form-check-input" @bind="LoginData.RememberMe" id="rememberMe">
@@ -31,7 +34,8 @@
                 </div>
                 <div class="d-flex justify-content-center">
                     <button id="login" class="btn btn-primary" @onclick="HandleLogin">Login</button>
-                    <button id="signup" class="btn btn-outline-primary ml-2" @onclick="NavigateToSignup">Cadastrar</button>
+                    <button id="signup" class="btn btn-outline-primary ml-2"
+                        @onclick="NavigateToSignup">Cadastrar</button>
                 </div>
             </div>
         </div>
@@ -40,36 +44,72 @@
 
 <style>
     body {
-        font-family: 'Patrick Hand', cursive;
+        font-family: 'Roboto';
+        font-weight: bold;
         background-color: #eaf6ff;
     }
+
     .bg-image {
         background: url('bus-japan-2.png') no-repeat center center;
-        background-size: cover;
+        background-size: center;
+        flex: 1;
+        min-height: 225px;
     }
-    #signup, #login {
+
+    #signup,
+    #login {
         border-radius: 25px;
         margin: 5px;
         transition: transform 0.3s ease-out;
     }
-    #signup:hover, #login:hover {
+
+    #signup:hover,
+    #login:hover {
         transform: scale(1.1);
     }
+
     .half-width {
         flex: 1;
         width: 50%;
     }
+
     .bg-light {
         background-color: #fbeec1 !important;
+        min-height: 100vh;
     }
+
     h1.text-primary {
         color: #ffab40 !important;
+        font-family: 'Roboto';
+        font-weight: bold;
     }
+
     .shadow-lg {
         box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
     }
+
     .rounded {
         border-radius: 15px;
+    }
+
+    @@media (max-width: 1000px) {
+        .page {
+            flex-direction: column;
+        }
+
+        .half-width {
+            width: 100%;
+            height: auto; /* Reset to automatic height on smaller screens */
+        }
+
+        .bg-image {
+            max-height: 1000px;
+            background-position: center;
+        }
+
+        .bg-light {
+            min-height: 70vh;
+        }
     }
 </style>
 
