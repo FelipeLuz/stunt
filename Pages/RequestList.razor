@@ -15,43 +15,51 @@
         <!-- Tabs -->
         <ul class="nav nav-pills justify-content-center mb-3">
             <li class="nav-item">
-                <button @onclick="SetActiveTabIncoming" class="btn @(activeTab == "incoming" ? "active btn-primary" : "btn-outline-primary")">Novo</button>
+                <button @onclick="SetActiveTabIncoming"
+                    class="btn @(activeTab == "incoming" ? "active btn-primary" : "btn-outline-primary")">Novo</button>
             </li>
             <li class="nav-item">
-                <button @onclick="SetActiveTabProcessing" class="btn @(activeTab == "processing" ? "active btn-primary" : "btn-outline-primary")">Em Processamento</button>
+                <button @onclick="SetActiveTabProcessing"
+                    class="btn @(activeTab == "processing" ? "active btn-primary" : "btn-outline-primary")">Em
+                    Processamento</button>
             </li>
             <li class="nav-item">
-                <button @onclick="SetActiveTabProcessed" class="btn @(activeTab == "processed" ? "active btn-primary" : "btn-outline-primary")">Processadas</button>
+                <button @onclick="SetActiveTabProcessed"
+                    class="btn @(activeTab == "processed" ? "active btn-primary" : "btn-outline-primary")">Processadas</button>
             </li>
         </ul>
 
         <!-- Tab Content -->
-        <div class="d-flex tab-content mt-3 justify-content-center align-items-center">
+                <div class="tab-content mt-3 justify-content-center align-items-center">
             @foreach (var tab in new[] { "incoming", "processing", "processed" })
             {
                 <div class="tab-pane @(activeTab == tab ? "active" : "")" id="@tab">
-                    @foreach (var request in requests.Where(r => r.Status.ToString().ToLower() == tab))
-					{
-						<div class="card mb-3 shadow-sm" style="width: 80%; max-width: 800px; min-width: 300px;">
-							<div class="row g-0">
-								<div class="col-md-3 d-flex align-items-center justify-content-center" style="padding: 10px">
-									<img src="@request.ImageUrl" alt="@request.Name" class="img-fluid" style="width: 80px; height: 80px; object-fit: cover; margin: 20px;">
-								</div>
-								<div class="col-md-9">
-									<div class="card-body py-2">
-										<div class="d-flex justify-content-between align-items-center">
-											<div>
-												<h5 class="card-title mb-1">@request.Name</h5>
-												<p class="card-text mb-0"><i class="bi bi-building"></i> @request.University</p>
-												<p class="card-text mb-0"><i class="bi bi-geo-alt"></i> @request.CityOfDestination</p>
-											</div>
-											<a href="@($"/admin/request-details/{request.Id}")" class="btn btn-sm btn-primary align-self-center">Detalhes</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					}
+                    <div class="row">
+                        @foreach (var request in requests.Where(r => r.Status.ToString().ToLower() == tab))
+                        {
+                            <div class="col-md-4 mb-3">
+                                <div class="card shadow-sm">
+                                    <div class="row g-0">
+                                        <div class="col-md-4 d-flex align-items-center" style="padding: 20px">
+                                            <img src="@request.ImageUrl" alt="@request.Name" class="img-fluid rounded" style="width: 60px; height: 60px; object-fit: cover;">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="card-body py-2">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <div>
+                                                        <h5 class="card-title mb-1">@request.Name</h5>
+                                                        <p class="card-text mb-0"><i class="bi bi-building"></i> @request.University</p>
+                                                        <p class="card-text mb-0"><i class="bi bi-geo-alt"></i> @request.CityOfDestination</p>
+                                                    </div>
+                                                    <a href="@($"/admin/request-details/{request.Id}")" class="btn btn-sm btn-primary align-self-center">Detalhes</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
                 </div>
             }
         </div>
@@ -62,6 +70,10 @@
     body {
         font-family: 'Roboto';
         background-color: #eaf6ff;
+    }
+
+    .rounded {
+        border-radius: 15px;
     }
 
     .bg-light {
@@ -89,7 +101,8 @@
         color: #000;
     }
 
-    .btn-primary, .btn-outline-primary {
+    .btn-primary,
+    .btn-outline-primary {
         border-radius: 25px;
         margin: 5px;
         transition: transform 0.3s ease-out;
@@ -107,6 +120,17 @@
 
     .btn-primary:hover {
         transform: scale(1.1);
+    }
+
+    .card {
+        border-radius: 20px;
+        /* Added a larger border-radius for a softer look */
+    }
+
+    .ghibli-text {
+        color: #7b5544;
+        /* A Ghibli-style color, adjust as needed */
+        font-weight: bold;
     }
 </style>
 
@@ -126,6 +150,28 @@
     {
         new Request { Id = 1, Name = "Felipe L.", Status = RequestStatus.Incoming, ImageUrl = "student.png", University = "Univali", CityOfDestination = "Blumenau" },
         new Request { Id = 2, Name = "Filipi C.", Status = RequestStatus.Processing, ImageUrl = "student.png", University = "Univali", CityOfDestination = "Itajai" },
-        //... add more mock data as needed...
+        new Request { Id = 3, Name = "Maria A.", Status = RequestStatus.Incoming, ImageUrl = "student.png", University = "UFSC", CityOfDestination = "Florianópolis" },
+        new Request { Id = 4, Name = "Bruno V.", Status = RequestStatus.Processing, ImageUrl = "student.png", University = "Univali", CityOfDestination = "Joinville" },
+        new Request { Id = 5, Name = "Carla P.", Status = RequestStatus.Processed, ImageUrl = "student.png", University = "Unisul", CityOfDestination = "Tubarão" },
+        new Request { Id = 6, Name = "Rafael M.", Status = RequestStatus.Incoming, ImageUrl = "student.png", University = "UFSC", CityOfDestination = "São José" },
+        new Request { Id = 7, Name = "Larissa S.", Status = RequestStatus.Processing, ImageUrl = "student.png", University = "Univali", CityOfDestination = "Itapema" },
+        new Request { Id = 8, Name = "Eduardo R.", Status = RequestStatus.Incoming, ImageUrl = "student.png", University = "UDESC", CityOfDestination = "Joinville" },
+        new Request { Id = 9, Name = "Patricia L.", Status = RequestStatus.Processing, ImageUrl = "student.png", University = "Unisul", CityOfDestination = "Imbituba" },
+        new Request { Id = 10, Name = "Lucas G.", Status = RequestStatus.Processed, ImageUrl = "student.png", University = "UFSC", CityOfDestination = "Florianópolis" },
+        new Request { Id = 11, Name = "Amanda R.", Status = RequestStatus.Incoming, ImageUrl = "student.png", University = "Univali", CityOfDestination = "Balneário Camboriú" },
+        new Request { Id = 12, Name = "Felipe S.", Status = RequestStatus.Processing, ImageUrl = "student.png", University = "UDESC", CityOfDestination = "Joinville" },
+        new Request { Id = 13, Name = "Juliana M.", Status = RequestStatus.Incoming, ImageUrl = "student.png", University = "Unisul", CityOfDestination = "Tubarão" },
+        new Request { Id = 14, Name = "Rodrigo C.", Status = RequestStatus.Processing, ImageUrl = "student.png", University = "UFSC", CityOfDestination = "Florianópolis" },
+        new Request { Id = 15, Name = "Camila B.", Status = RequestStatus.Processed, ImageUrl = "student.png", University = "Univali", CityOfDestination = "Itajaí" },
+        new Request { Id = 16, Name = "Thiago M.", Status = RequestStatus.Incoming, ImageUrl = "student.png", University = "UDESC", CityOfDestination = "Florianópolis" },
+        new Request { Id = 17, Name = "Isabela L.", Status = RequestStatus.Processing, ImageUrl = "student.png", University = "Univali", CityOfDestination = "Balneário Camboriú" },
+        new Request { Id = 18, Name = "Marcelo F.", Status = RequestStatus.Incoming, ImageUrl = "student.png", University = "UFSC", CityOfDestination = "Joinville" },
+        new Request { Id = 19, Name = "Leticia P.", Status = RequestStatus.Processing, ImageUrl = "student.png", University = "Unisul", CityOfDestination = "Tubarão" },
+        new Request { Id = 20, Name = "Gustavo A.", Status = RequestStatus.Processed, ImageUrl = "student.png", University = "UDESC", CityOfDestination = "São José" },
+        new Request { Id = 21, Name = "Natalia G.", Status = RequestStatus.Incoming, ImageUrl = "student.png", University = "Univali", CityOfDestination = "Itapema" },
+        new Request { Id = 22, Name = "André L.", Status = RequestStatus.Processing, ImageUrl = "student.png", University = "UFSC", CityOfDestination = "Florianópolis" },
+        new Request { Id = 23, Name = "Luisa M.", Status = RequestStatus.Incoming, ImageUrl = "student.png", University = "Univali", CityOfDestination = "Itajaí" },
+        new Request { Id = 24, Name = "Ricardo S.", Status = RequestStatus.Processing, ImageUrl = "student.png", University = "Unisul", CityOfDestination = "Imbituba" },
+        new Request { Id = 25, Name = "Fernanda C.", Status = RequestStatus.Processed, ImageUrl = "student.png", University = "UDESC", CityOfDestination = "Florianópolis" }
     };
 }
