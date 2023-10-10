@@ -1,5 +1,6 @@
 @page "/admin/request-details/{RequestId}"
 @using stunt.Models
+@inject NavigationManager NavManager
 
 <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -89,11 +90,21 @@
 
     private async Task ApproveRequest()
     {
-        // Implement your logic to approve the request.
+        this.request.Status = RequestStatus.Processed;
+        SaveAndSync();
     }
 
     private async Task DenyRequest()
     {
-        // Implement your logic to deny the request.
+        this.request.Status = RequestStatus.Processing;
+        SaveAndSync();
+    }
+
+    private void SaveAndSync()
+    {
+        var old = Mock.Data.Requests.First(x => x.Id == request.Id);
+        Mock.Data.Requests.Remove(old);
+        Mock.Data.Requests.Add(request);
+        NavManager.NavigateTo("/admin/requests");
     }
 }

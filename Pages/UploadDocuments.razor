@@ -1,28 +1,28 @@
 @page "/upload"
 
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+
 <div class="d-flex flex-column justify-content-start align-items-center pt-5 pb-5 bg-light" style="min-height: 100vh;">
-    <div class="shadow-lg p-5 bg-white rounded-lg" style="width: 80%; max-width: 600px;">
-        <h3 class="text-center text-primary mb-4">Upload de Documentos</h3>
+    <div class="shadow-lg p-5 bg-white rounded" style="width: 80%; max-width: 600px;">
+        <h3 class="text-center mb-4">Upload de Documentos</h3>
+
         @if (!isUploadFinalized) {
-            <div class="form-group mb-4">
-                <label for="rgUpload"><span class="oi oi-cloud-upload"></span> RG <span class="custom-badge">PNG</span><span class="custom-badge">JPEG</span></label>
-                <InputFile id="rgUpload" OnChange="@((e) => HandleFileUpload(e, "RG"))" />
-            </div>
-
-            <div class="form-group mb-4">
-                <label for="residenceProofUpload"><span class="oi oi-cloud-upload"></span> Comprovante de Residência <span class="custom-badge">PDF</span><span class="custom-badge">PNG</span><span class="custom-badge">JPEG</span></label>
-                <InputFile id="residenceProofUpload" OnChange="@((e) => HandleFileUpload(e, "Comprovante de Residência"))" />
-            </div>
-
-            <div class="form-group mb-4">
-                <label for="enrollmentCertificateUpload"><span class="oi oi-cloud-upload"></span> Atestado de Matrícula <span class="custom-badge">PDF</span><span class="custom-badge">PNG</span><span class="custom-badge">JPEG</span></label>
-                <InputFile id="enrollmentCertificateUpload" OnChange="@((e) => HandleFileUpload(e, "Atestado de Matrícula"))" />
-            </div>
-
-            <div class="form-group mb-4">
-                <label for="attendanceCertificateUpload"><span class="oi oi-cloud-upload"></span> Atestado de Frequência <span class="custom-badge">PDF</span><span class="custom-badge">PNG</span><span class="custom-badge">JPEG</span></label>
-                <InputFile id="attendanceCertificateUpload" OnChange="@((e) => HandleFileUpload(e, "Atestado de Frequência"))" />
-            </div>
+            @foreach (var uploadInfo in new[] {
+                new { Id="rgUpload", Name="Documento oficial com foto", Formats=new[] {"PNG", "JPEG"}},
+                new { Id="residenceProofUpload", Name="Comprovante de Residência", Formats=new[] {"PDF", "PNG", "JPEG"}},
+                new { Id="enrollmentCertificateUpload", Name="Atestado de Matrícula", Formats=new[] {"PDF", "PNG", "JPEG"}},
+                new { Id="attendanceCertificateUpload", Name="Atestado de Frequência", Formats=new[] {"PDF", "PNG", "JPEG"}}
+            })
+            {
+                <div class="form-group mb-4">
+                    <label for="@uploadInfo.Id"><span class="oi oi-cloud-upload"></span> @uploadInfo.Name @foreach (var format in uploadInfo.Formats) {<span class="custom-badge">@format</span>}</label>
+                    <InputFile id="@uploadInfo.Id" OnChange="@((e) => HandleFileUpload(e, uploadInfo.Name))" />
+                </div>
+            }
 
             <button @onclick="FinalizeUpload" class="btn btn-primary w-100 mt-3 mb-3">Finalizar</button>
 
@@ -39,6 +39,33 @@
         }
     </div>
 </div>
+
+<style>
+    body {
+        font-family: 'Roboto';
+        background-color: #eaf6ff;
+    }
+
+    .bg-light {
+        background-color: #fbeec1 !important;
+    }
+
+    h3 {
+        color: #ffab40;
+        font-family: 'Roboto';
+        font-weight: bold;
+    }
+
+    .btn {
+        border-radius: 25px;
+        margin: 5px;
+        transition: transform 0.3s ease-out;
+    }
+
+    .btn:hover {
+        transform: scale(1.1);
+    }
+</style>
 
 @code {
     private string message = "";
